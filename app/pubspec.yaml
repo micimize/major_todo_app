@@ -23,14 +23,14 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
-  built_graphql:
-    path: ../../built_graphql
-  built_graphql_flutter:
-    path: ../../built_graphql_flutter
+  major_graphql:
+    path: ../../major_graphql
+  major_graphql_flutter:
+    path: ../../major_graphql_flutter
 
 dev_dependencies:
-  built_graphql_generator:
-    path: ../../built_graphql_generator
+  major_graphql_generator:
+    path: ../../major_graphql_generator
   flutter_test:
     sdk: flutter
   test: ^1.6.0
