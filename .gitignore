@@ -1,0 +1,106 @@
+# Files and directories created by pub
+.dart_tool/
+.packages
+# Remove the following pattern if you wish to check in your lock file
+pubspec.lock
+
+# Conventional directory for build outputs
+build/
+
+# Directory created by dartdoc
+doc/api/
+
+
+*.graphql.dart
+*.graphql.g.dart
+*.ast.g.dart
+
+
+.history/
+.vscode/
+
+## backend
+node_modules/
+
+## Flutter Git Ignore
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.buildlog/
+.history
+.svn/
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+#.vscode/
+
+# Flutter/Dart/Pub related
+**/doc/api/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+/build/
+
+# Web related
+lib/generated_plugin_registrant.dart
+
+# Exceptions to above rules.
+!/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
+
+dist/
+
+app/ios/Runner/GoogleService-Info.plist
+
+google-play-key.json
+
+# fastlane specific
+**/fastlane/report.xml
+
+# deliver temporary files
+**/fastlane/Preview.html
+
+# snapshot generated screenshots
+**/fastlane/screenshots
+
+# scan temporary files
+**/fastlane/test_output
+
+
+**/ios/Runner.app.dSYM.zip
+**/ios/Runner.ipa
+
+
+**/.yarn/unplugged
+**/.yarn/build-state.yml
+
+# consider switching to zero installs
+# https://github.com/yarnpkg/berry/issues/454
+**/.yarn/*
+!**/.yarn/releases
+!**/.yarn/plugins
+**/.pnp.*
+
+**/yarn.lock
+
+**/deployment_variables.json
+
+**/.env
+
+**/act/*.json
+**/act/*.env
+**/app.yml
+**/app.yaml
