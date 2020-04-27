@@ -39,11 +39,11 @@ dev_dependencies:
 
 dependency_overrides:
   major_graphql:
-    path: ../../major_graphql
+    path: /Users/mjr/Documents/code/libraries/major/major_graphql
   major_graphql_flutter:
-    path: ../../major_graphql_flutter
+    path: /Users/mjr/Documents/code/libraries/major/major_graphql_flutter
   major_graphql_generator:
-    path: ../../major_graphql_generator
+    path: /Users/mjr/Documents/code/libraries/major/major_graphql_generator
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

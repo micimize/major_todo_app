@@ -20,6 +20,7 @@ targets:
             UUID: String
             Cursor: String
             JSON: Object
+            FirebaseUid: String
           replaceTypes:
             DatetimeIntervalInput: DatetimeInterval
           irreducibleTypes:

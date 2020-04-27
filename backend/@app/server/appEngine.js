@@ -6,9 +6,6 @@ require("@app/config/extra");
 /*
 interface Secrets {
   DATABASE_INSTANCE: string;
-  JWT_SECRET: string;
-  GITHUB_KEY: string;
-  GITHUB_SECRET: string;
   DATABASE_OWNER_PASSWORD: string;
   DATABASE_AUTHENTICATOR_PASSWORD: string;
 }
@@ -88,9 +85,6 @@ env_variables:
     config.DATABASE_OWNER
   }&password=${config.DATABASE_OWNER_PASSWORD}"
   ${writeAsYaml("DATABASE_INSTANCE", { required: true })}
-  ${writeAsYaml("JWT_SECRET", { required: true })}
-  ${writeAsYaml("GITHUB_KEY")}
-  ${writeAsYaml("GITHUB_SECRET")}
   ${writeAsYaml("DATABASE_OWNER", {
     default: config.DATABASE_NAME,
   })}

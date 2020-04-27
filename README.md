@@ -43,3 +43,7 @@ Soon we'll want a real release/lifecycel roadmap
 
 
 ios/Runner/GoogleService-Info.plist needs to be added
+
+### notes
+* app/ios/Runner/GoogleService-Info.plist is required but contains an api key
+

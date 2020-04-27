@@ -150,7 +150,7 @@ async function runCommand(
       password,
     });
     const session = await createSession(rootPgPool, user.id);
-    req.login({ session_id: session.uuid }, () => {
+    (req as any).login({ session_id: session.uuid }, () => {
       res.redirect(next || "/");
     });
     return null;

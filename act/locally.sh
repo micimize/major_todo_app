@@ -12,7 +12,7 @@ export GCP_SERVICE_ACCOUNT_KEY=$(
   base64 -i $DIR/deployment-service-account-key.json
 )
 
-# -s JWT_SECRET sets the value of JWT_SECRET in the current environment as a secret
+# -s SECRET sets the value of SECRET in the current environment as a secret
 act \
   -P ubuntu-latest=nektos/act-environments-ubuntu:18.04-lite \
   -s GCP_PROJECT_ID \
@@ -20,5 +20,4 @@ act \
   -s GCP_SERVICE_ACCOUNT_KEY \
   -s DATABASE_INSTANCE \
   -s DATABASE_OWNER_PASSWORD \
-  -s DATABASE_AUTHENTICATOR_PASSWORD \
-  -s JWT_SECRET
+  -s DATABASE_AUTHENTICATOR_PASSWORD
