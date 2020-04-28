@@ -24,7 +24,11 @@ create domain app_public.firebase_uid as varchar ;
 
 create function app_private.tg__add_job() returns trigger as $$
 begin
-  perform graphile_worker.add_job(tg_argv[0], json_build_object('id', NEW.id), coalesce(tg_argv[1], public.gen_random_uuid()::text));
+  perform graphile_worker.add_job(
+    tg_argv[0],
+    json_build_object('id', NEW.id),
+    coalesce(tg_argv[1], public.gen_random_uuid()::text)
+  );
   return NEW;
 end;
 $$ language plpgsql volatile security definer set search_path to pg_catalog, public, pg_temp;
