@@ -44,6 +44,30 @@ Soon we'll want a real release/lifecycel roadmap
 
 ios/Runner/GoogleService-Info.plist needs to be added
 
+### Structure
+
+```bash
+tree -L 3 -d -I 'node_modules|ios|android|build' .
+.
+├── act # scripts for ops stuff like testing actions and instantiating the db
+├── app # the flutter app
+│   ├── lib
+│   │   ├── history  # submodules likely not current
+│   │   ├── stopwatch
+│   │   └── task_list
+│   └── test
+└── backend # postgraphile backend adapted from graphile/starter
+    ├── @app
+    │   ├── __tests__
+    │   ├── config # shared configuration handling
+    │   ├── db     # graphile-migrate based schema authoring
+    │   ├── server # graphile server + firebase auth handling
+    │   └── worker # disabled background worker (graphile-worker)
+    └── data # output dir for schema info.
+```
+
+
 ### notes
 * app/ios/Runner/GoogleService-Info.plist is required but contains an api key
+
 
