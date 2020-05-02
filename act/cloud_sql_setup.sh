@@ -5,12 +5,36 @@
 # Run the following in a different terminal before this script:
 # cloud_sql_proxy -instances=$DATABASE_INSTANCE=tcp:2345
 
-# Echo commands, exit on error
-set -e -x
+# exit on error
+set -e
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 cd $DIR/..
+
+HARD=0
+
+while [[ $# -gt 0 ]]
+do
+  key="$1"
+
+  case $key in
+    --hard)
+      echo Dropping all roles and databases before setup
+      HARD=1
+      shift # past flag
+      ;;
+  esac
+
+  case $key in
+    -v|--verbose)
+      echo Echoing all commands
+      set -x
+      shift # past flag
+      ;;
+  esac
+
+done
 
 ########################################
 #    THESE ARE THE CRITICAL SETTINGS   #
@@ -46,17 +70,25 @@ _CONNECTION="postgres://$_AUTH@${DATABASE_HOST}:${DATABASE_PORT}"
 SUPERUSER_TEMPLATE1_URL="$_CONNECTION/template1"
 SUPERUSER_DATABASE_URL="$_CONNECTION/$DATABASE_NAME"
 
-echo "\n\nTesting database connection"
+echo -e "\n\nTesting database connection"
 psql -X1v ON_ERROR_STOP=1 "${SUPERUSER_TEMPLATE1_URL}" -c 'SELECT true AS success'
 
-echo "\n\nCreating the database and the roles"
+echo -e "\n\nCreating the database and the roles"
+
+DROP_STATEMENTS=''
+if [ $HARD -gt 0 ]
+then
+  DROP_STATEMENTS="
+  -- If you want to scorch the earth beforehand, pass --hard
+  DROP DATABASE ${DATABASE_NAME};
+  DROP ROLE ${DATABASE_OWNER};
+  DROP ROLE ${DATABASE_AUTHENTICATOR};
+  DROP ROLE ${DATABASE_VISITOR};
+  "
+fi
 
 psql -Xv ON_ERROR_STOP=1 "${SUPERUSER_TEMPLATE1_URL}" <<HERE
--- If you want to scorch the earth beforehand: 
--- DROP ROLE ${DATABASE_OWNER};
--- DROP ROLE ${DATABASE_AUTHENTICATOR};
--- DROP ROLE ${DATABASE_VISITOR};
--- DROP DATABASE ${DATABASE_NAME};
+${DROP_STATEMENTS}
 
 CREATE ROLE ${DATABASE_OWNER}
   WITH LOGIN PASSWORD '${DATABASE_OWNER_PASSWORD}';
@@ -85,7 +117,7 @@ GRANT CONNECT ON DATABASE ${DATABASE_NAME}
 
 HERE
 
-echo "\n\nInstalling extensions into the database"
+echo -e "\n\nInstalling extensions into the database"
 
 psql -X1v ON_ERROR_STOP=1 "${SUPERUSER_DATABASE_URL}" <<HERE
 -- Add extensions

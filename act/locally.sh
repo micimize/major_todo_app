@@ -2,7 +2,7 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-cd $DIR/../../
+cd $DIR/..
 
 set -a # automatically export all variables
 source $DIR/secrets.env
@@ -12,6 +12,7 @@ export GCP_SERVICE_ACCOUNT_KEY=$(
   base64 -i $DIR/deployment-service-account-key.json
 )
 
+# https://github.com/nektos/act (brew install nektos/tap/act) runs github actions locally
 # -s SECRET sets the value of SECRET in the current environment as a secret
 act \
   -P ubuntu-latest=nektos/act-environments-ubuntu:18.04-lite \

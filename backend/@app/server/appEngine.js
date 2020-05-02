@@ -62,7 +62,9 @@ beta_settings:
 
 # [START runtime]
 runtime: nodejs12
-env: flex
+# standard is managed, flex is autoscaling docker
+# standard does not have websocket support
+env: standard
 entrypoint: node dist/index.js
 
 # manual_scaling:
