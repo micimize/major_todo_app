@@ -69,7 +69,7 @@ class _AuthenticationProviderState extends State<AuthenticationProvider> {
     _silentSignIn();
   }
 
-  void _handleSignIn() async {
+  void _signIn() async {
     try {
       await _handleSignIn();
     } catch (error) {
@@ -91,7 +91,7 @@ class _AuthenticationProviderState extends State<AuthenticationProvider> {
           children: <Widget>[
             const Text("You are not currently signed in."),
             RaisedButton(
-              onPressed: _handleSignIn,
+              onPressed: _signIn,
               child: const Text('SIGN IN'),
             ),
           ],

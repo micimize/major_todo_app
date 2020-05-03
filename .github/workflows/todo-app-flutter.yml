@@ -9,16 +9,28 @@ on:
 
 jobs:
   deliver-flutter:
-    name: Deploy Flutter App
-    runs-on: ubuntu-latest
+    name: Deliver Flutter App Test Builds
+    runs-on: macos-latest
 
     env:
       LC_ALL: en_US.UTF-8
       LANG: en_US.UTF-8
-      SERVER_URL: 'blahblah'
 
     steps:
     - uses: actions/checkout@v2
+
+      # some packages such as google_sign_in
+      # require files that shouldn't be exposed in version control
+      # set a github secret with
+      # echo "$(base64 -i app/ios/Runner/GoogleService-Info.plist)" | pbcopy
+    - name: Write API Key-containing files
+      working-directory: "app/"
+      run: |
+        echo "${{ secrets.APP_GOOGLE_SERVICE_INFO }}" |
+          base64 --decode /dev/stdin > ios/Runner/GoogleService-Info.plist
+
+    - name: Write .env
+      run: echo 'APP_BASE_URL=${{secrets.APP_BASE_URL}}\n' > app/.env
 
     - name: Deliver iOS build to testflight
       uses: maierj/fastlane-action@v1.4.0
