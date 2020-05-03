@@ -19,18 +19,16 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-      # setup env
-    - uses: actions/checkout@v1
+    - name: Setup Java
     - uses: actions/setup-java@v1
       with:
         java-version: '12.x'
-    - uses: subosito/flutter-action@v1
+
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v1
       with:
         flutter-version: '1.17.0-3.3.pre'
         channel: 'beta'
-    - run: flutter pub get
-    - run: flutter test
-    - run: flutter build apk
 
       # some packages such as google_sign_in
       # require files that shouldn't be exposed in version control
