@@ -2,8 +2,8 @@
 # 
 on:
   push:
-    paths:
-      - 'app/*'
+    #paths:
+    #  - 'app/*'
     branches:
       - master
 
