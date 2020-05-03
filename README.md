@@ -1,4 +1,4 @@
-# todo_app
+# major_todo_app
 
 An app that helps you get things done
 
@@ -43,8 +43,6 @@ Soon we'll want a real release/lifecycle roadmap
 - [ ] structured tasks / grouped tasks:
       considerations: do tasks complete along with their constituent parts?
       should the be implemented recursively? Or a seperate concept
-
-ios/Runner/GoogleService-Info.plist needs to be added
 
 ### Structure
 
@@ -105,3 +103,14 @@ DATABASE_AUTHENTICATOR_PASSWORD=ghi
   adding more context and "meaning" to tasks such as time horizons, etc seems valuable
 - There are a lot of aspects of the task management domain that could be encoded in an app, but aren't,
   that I think could be valuable
+
+#### feature ideas
+
+- time tracking
+- scheduling / planning / due dates
+- duration, timers, alarms
+- "staleness"? Some tasks get more important the longer they remain undone,
+  some less
+- task sharing
+- tagging?
+- gamification?

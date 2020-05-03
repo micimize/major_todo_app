@@ -53,20 +53,20 @@ jobs:
             --key-file=client-secret.json
           gcloud config set project ${{ secrets.GCP_PROJECT_ID }}
 
-    # - name: Run Database Migrations
-    #   working-directory: "backend/@app/db/"
-    #   run: |
-    #     # we use the cloud_sql_proxy so we can auth with the service account
-    #     wget https://dl.google.com/cloudsql/cloud_sql_proxy.linux.amd64 -O cloud_sql_proxy
-    #     chmod +x cloud_sql_proxy
-    #     # We background the proxy, which (I'm pretty sure) gets auto-garbage collected
-    #     # TODO this only works without a race condition because yarn is slowish
-    #     ./cloud_sql_proxy -instances=${{ secrets.DATABASE_INSTANCE  }}=tcp:5432 2>&1 | \
-    #       sed 's/${{secrets.DATABASE_INSTANCE}}/$DATABASE_INSTANCE/' &
+      - name: Run Database Migrations
+        working-directory: "backend/@app/db/"
+        run: |
+          # we use the cloud_sql_proxy so we can auth with the service account
+          wget https://dl.google.com/cloudsql/cloud_sql_proxy.linux.amd64 -O cloud_sql_proxy
+          chmod +x cloud_sql_proxy
+          # We background the proxy, which (I'm pretty sure) gets auto-garbage collected
+          # TODO this only works without a race condition because yarn is slowish
+          ./cloud_sql_proxy -instances=${{ secrets.DATABASE_INSTANCE  }}=tcp:5432 2>&1 | \
+            sed 's/${{secrets.DATABASE_INSTANCE}}/$DATABASE_INSTANCE/' &
 
-    #     yarn && yarn migrate
-    #   env:
-    #     DATABASE_HOST: "localhost"
+          yarn && yarn migrate
+        env:
+          DATABASE_HOST: "localhost"
 
       - name: Publish Server to Google App Engine
         working-directory: "backend/@app/server/"

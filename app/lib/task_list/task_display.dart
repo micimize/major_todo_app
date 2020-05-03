@@ -28,14 +28,17 @@ class TaskDisplay extends StatelessWidget {
         }) {
           return ListTile(
             leading: IconButton(
-              onPressed: () => runMutation(
-                update.UpdateTaskVariables(
-                  (b) => b
-                    ..taskId = task.id
-                    ..taskPatch = (TaskPatchBuilder()
-                      ..lifecycle = TaskLifecycle.COMPLETED),
-                ),
-              ),
+              onPressed: task.isCompleted
+                  ? null
+                  : () => runMutation(
+                        update.UpdateTaskVariables(
+                          (b) => b
+                            ..taskId = task.id
+                            ..taskPatch = (TaskPatchBuilder()
+                              ..closed = DateTime.now().toUtc()
+                              ..lifecycle = TaskLifecycle.COMPLETED),
+                        ),
+                      ),
               icon: Icon(
                 task.isCompleted
                     ? Icons.check_box
