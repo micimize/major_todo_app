@@ -65,8 +65,6 @@ dist/
 
 app/ios/Runner/GoogleService-Info.plist
 
-google-play-key.json
-
 # fastlane specific
 **/fastlane/report.xml
 
@@ -97,6 +95,9 @@ google-play-key.json
 **/yarn.lock
 
 **/deployment_variables.json
+google-play-key.json
+app/ios/gc_keys.json
+
 
 **/.env
 
