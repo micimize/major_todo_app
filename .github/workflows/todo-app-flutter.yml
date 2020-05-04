@@ -55,6 +55,16 @@ jobs:
     - name: Write .env
       run: echo 'APP_BASE_URL=${{secrets.APP_BASE_URL}}\n' > app/.env
 
+    - name: Fastlane Match GCS Credentials
+      working-directory: "app/ios"
+      run: |
+        echo "${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}" |
+          base64 --decode /dev/stdin > gc_keys.json
+
+      # sync dev code signing profile
+    - name: Install Code Signing Certs
+      run: bundle exec fastlane match development
+
     - name: Deliver iOS build to testflight
       working-directory: "app/ios"
       run: bundle exec fastlane beta
