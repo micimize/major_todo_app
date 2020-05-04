@@ -61,14 +61,14 @@ jobs:
         echo "${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}" |
           base64 --decode /dev/stdin > gc_keys.json
 
-      # sync dev code signing profile
-    - name: Install Code Signing Certs
-      working-directory: "app/ios"
-      run: bundle exec fastlane match development
-
+    
     - name: Deliver iOS build to testflight
       working-directory: "app/ios"
-      run: bundle exec fastlane beta
+      run: |
+        # sync dev code signing profile
+        bundle exec fastlane match development
+        # sync dev code signing profile
+        bundle exec fastlane beta
       env: 
         FASTLANE_PASSWORD: ${{secrets.FASTLANE_PASSWORD}}
         FASTLANE_USER: ${{secrets.FASTLANE_USER}}
