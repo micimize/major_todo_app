@@ -64,11 +64,7 @@ jobs:
     
     - name: Deliver iOS build to testflight
       working-directory: "app/ios"
-      run: |
-        # sync dev code signing profile
-        bundle exec fastlane match development --readonly
-        # sync dev code signing profile
-        bundle exec fastlane beta
+      run: bundle exec fastlane beta
       env: 
         FASTLANE_PASSWORD: ${{secrets.FASTLANE_PASSWORD}}
         FASTLANE_USER: ${{secrets.FASTLANE_USER}}
