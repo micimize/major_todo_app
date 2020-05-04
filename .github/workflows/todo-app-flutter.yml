@@ -63,6 +63,7 @@ jobs:
 
       # sync dev code signing profile
     - name: Install Code Signing Certs
+      working-directory: "app/ios"
       run: bundle exec fastlane match development
 
     - name: Deliver iOS build to testflight
