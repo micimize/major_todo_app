@@ -33,8 +33,11 @@ platform :ios do
     end
   end
 
+  # TODO local version without match and setup
   desc "Push a new beta build to TestFlight"
   lane :beta do
+    setup_ci()
+
     match(type: "appstore", readonly: is_ci)
 
     build_and_inc_flutter
