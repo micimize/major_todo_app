@@ -30,6 +30,12 @@ jobs:
         flutter-version: '1.17.0-3.3.pre'
         channel: 'beta'
 
+    - working-directory: "app/"
+      run: flutter pub get
+
+    - working-directory: "app/"
+      run: flutter pub run build_runner build
+
       # some packages such as google_sign_in
       # require files that shouldn't be exposed in version control
       # set a github secret with
