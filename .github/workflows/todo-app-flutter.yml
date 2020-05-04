@@ -66,7 +66,7 @@ jobs:
       working-directory: "app/ios"
       run: |
         # sync dev code signing profile
-        bundle exec fastlane match development
+        bundle exec fastlane match development --readonly
         # sync dev code signing profile
         bundle exec fastlane beta
       env: 
