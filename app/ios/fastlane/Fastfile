@@ -41,7 +41,11 @@ platform :ios do
     match(type: "appstore", readonly: is_ci)
 
     build_and_inc_flutter
-    build_app(workspace: "Runner.xcworkspace", scheme: "Runner")
+    build_app(
+      export_xcargs: "-allowProvisioningUpdates",
+      workspace: "Runner.xcworkspace",
+      scheme: "Runner"
+    )
 
     upload_to_testflight
   end
