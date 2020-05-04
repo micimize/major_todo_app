@@ -30,11 +30,17 @@ jobs:
         flutter-version: '1.17.0-3.3.pre'
         channel: 'beta'
 
+    - name: Setup Fastlane
+      working-directory: "app/ios"
+      run: |
+        gem install bundler
+        bundle install
+
     - working-directory: "app/"
       run: flutter pub get
 
     - working-directory: "app/"
-      run: flutter pub run build_runner build
+      run: flutter packages pub run build_runner build --delete-conflicting-outputs
 
       # some packages such as google_sign_in
       # require files that shouldn't be exposed in version control
@@ -50,11 +56,8 @@ jobs:
       run: echo 'APP_BASE_URL=${{secrets.APP_BASE_URL}}\n' > app/.env
 
     - name: Deliver iOS build to testflight
-      uses: maierj/fastlane-action@v1.4.0
-      with:
-        subdirectory: 'app/ios'
-        lane: 'beta'
-        options: '{ "skip-tracking": true }'
+      working-directory: "app/ios"
+      run: bundle exec fastlane beta
       env: 
         FASTLANE_PASSWORD: ${{secrets.FASTLANE_PASSWORD}}
         FASTLANE_USER: ${{secrets.FASTLANE_USER}}
