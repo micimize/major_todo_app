@@ -35,7 +35,7 @@ platform :ios do
 
   desc "Push a new beta build to TestFlight"
   lane :beta do
-    match(type: "development", readonly: is_ci)
+    match(type: "development", readonly: true)
 
     build_and_inc_flutter
     build_app(workspace: "Runner.xcworkspace", scheme: "Runner")
