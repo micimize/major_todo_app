@@ -68,6 +68,7 @@ jobs:
       env: 
         FASTLANE_MATCH_GCS_BUCKET: '${{secrets.FASTLANE_MATCH_GCS_BUCKET}}'
         FASTLANE_APPLE_ID: '${{secrets.FASTLANE_APPLE_ID}}'
+        FASTLANE_APP_APPLE_ID: '${{secrets.FASTLANE_APP_APPLE_ID}}' # NOTE: ENTIRELY DIFFERENT than the above!
         FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: '${{secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD}}'
 
    #- name: Deliver Android build to store
