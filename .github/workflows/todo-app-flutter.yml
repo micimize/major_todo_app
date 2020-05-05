@@ -66,10 +66,9 @@ jobs:
       working-directory: "app/ios"
       run: bundle exec fastlane beta
       env: 
-        FASTLANE_PASSWORD: ${{secrets.FASTLANE_PASSWORD}}
-        FASTLANE_USER: ${{secrets.FASTLANE_USER}}
-        FASTLANE_MATCH_GCS_BUCKET: ${{secrets.FASTLANE_MATCH_GCS_BUCKET}}
-        FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD}}
+        FASTLANE_APPLE_ID: '${{secrets.FASTLANE_APPLE_ID}}'
+        FASTLANE_MATCH_GCS_BUCKET: '${{secrets.FASTLANE_MATCH_GCS_BUCKET}}'
+        FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: '${{secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD}}'
 
    #- name: Deliver Android build to store
    #  uses: maierj/fastlane-action@v1.4.0
