@@ -37,7 +37,9 @@ platform :ios do
   desc "Push a new beta build to TestFlight"
   lane :beta do
     setup_ci(force: true)
+
     match(type: "appstore", readonly: true)
+
     build_and_inc_flutter
     build_app(
       xcargs: "-allowProvisioningUpdates",
