@@ -4,7 +4,7 @@ on:
     paths:
       - "backend/@app/*"
     branches:
-      - master
+      - beta # only release new versions on beta releases
 
 jobs:
   deploy-backend:

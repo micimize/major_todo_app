@@ -1,11 +1,10 @@
-# TODO It might make more sense to have two different flows for the backend,
-# 
+# TODO android cd
 on:
   push:
-    #paths:
-    #  - 'app/*'
+    paths:
+      - 'app/*'
     branches:
-      - master
+      - beta # only push to testflight on beta releases
 
 jobs:
   deliver-flutter:
