@@ -42,6 +42,7 @@ platform :ios do
 
     build_and_inc_flutter
     build_app(
+      xcargs: "-allowProvisioningUpdates",
       export_xcargs: "-allowProvisioningUpdates",
       workspace: "Runner.xcworkspace",
       scheme: "Runner"
