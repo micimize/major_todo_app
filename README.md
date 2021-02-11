@@ -107,7 +107,7 @@ DATABASE_AUTHENTICATOR_PASSWORD=ghi
 #### feature ideas
 
 - time tracking
-- scheduling / planning / due dates
+- due dates
 - duration, timers, alarms
 - "staleness"? Some tasks get more important the longer they remain undone,
   some less
